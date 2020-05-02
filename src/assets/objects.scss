@@ -1,0 +1,33 @@
+.box {
+    background-color: var(--bg-content-color);
+    max-width: var(--content-width);
+    margin: 0 auto;
+    transition: background-color 0.6s;
+    padding: var(--space);
+    border-radius: var(--radius);
+    box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.02),
+        1px 1px 15px 0 rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.6s;
+}
+
+.button {
+    display: inline-block;
+    text-decoration: none;
+    padding: 5px;
+    color: #eee;
+    background-color: var(--accent-color);
+    border-radius: var(--radius);
+    user-select: none;
+}
+
+.headline-underline {
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #ccc;
+}
+
+.line {
+    width: 80%;
+    display: block;
+    border-bottom: 2px solid #ccc;
+    margin: 2em;
+}

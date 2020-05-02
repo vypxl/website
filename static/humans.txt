@@ -1,0 +1,3 @@
+Author: vypxl
+
+Built with Sanity, Gridsome and Vue.js, hosted on Firebase

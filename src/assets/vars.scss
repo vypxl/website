@@ -1,0 +1,28 @@
+html {
+    --base-font-size: 20px;
+}
+
+body {
+    --bg-color: #131c2f;
+    --bg-content-color: #13253f;
+    --body-color: #ced8de;
+    --title-color: #fff;
+    --link-color: #05ad2f;
+    --accent-color: #474b85;
+    --border-color: #ffffff1a;
+
+    --space: 3.5rem;
+    --content-width: 940px;
+    --header-height: 80px;
+    --radius: 5px;
+}
+
+@media screen and (max-width: 650px) {
+    html {
+        --base-font-size: 16px;
+    }
+    body {
+        --space: 1.5rem;
+        --header-height: 60px;
+    }
+}
