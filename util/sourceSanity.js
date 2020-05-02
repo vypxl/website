@@ -7,6 +7,70 @@ const sanity = require('@sanity/client')({
     useCdn: false,
 })
 
+const schema = `
+type Blogpost implements Node {
+  content: String
+  description: String
+  publishedAt(
+    format: String
+    locale: String
+  ): Date
+  series: Blogpost_Series
+  slug: String
+  tags: [Blogpost_Tags]
+  title: String
+  readTime: Int
+  tags_ref(
+    sortBy: String
+    order: SortOrder = DESC
+    skip: Int = 0
+    sort: [SortArgument]
+    limit: Int
+  ): [Tag]
+  series_ref: Series
+}
+
+type Blogpost_Series {
+  name: String
+  slug: String
+  next: String
+  prev: String
+}
+
+type Blogpost_Tags {
+  color: String
+  name: String
+  slug: String
+}
+
+type Series implements Node {
+  description: String
+  name: String
+  parts(
+    sortBy: String
+    order: SortOrder = DESC
+    skip: Int = 0
+    sort: [SortArgument]
+    limit: Int
+  ): [Blogpost]
+  slug: String
+}
+
+type Tag implements Node {
+  color: String
+  description: String
+  name: String
+  posts(
+    sortBy: String
+    order: SortOrder = DESC
+    skip: Int = 0
+    sort: [SortArgument]
+    limit: Int
+  ): [Blogpost]
+  slug: String
+}
+`
+
 // renders field `which` of every object in `objs` with the `markdownRenderer`
 const md2html = (objs, which) =>
     objs.map(obj => (obj[which] = markdownRenderer.render(obj[which])))
@@ -72,8 +136,7 @@ async function getPosts() {
     title, 
     "slug": slug.current, 
     "series": *[_type == "series" && references(^._id)][0] { name, "slug": slug.current },
-	tags[]->{name, "slug": slug.current, color}, 
-	thumbnailID, 
+	tags[]->{name, "slug": slug.current, color},
     publishedAt,
     content,
     description
@@ -133,6 +196,9 @@ function createReferences(actions) {
 
 module.exports = api => {
     api.loadSource(async actions => {
+
+        actions.addSchemaTypes(schema)
+
         console.log(`Fetching data from Sanity...`)
         const data = await getData()
 
