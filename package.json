@@ -1,9 +1,11 @@
 {
   "name": "vypxl-personal-website-and-blog",
   "private": true,
+  "version": "1.0.0",
   "scripts": {
     "build": "gridsome build",
     "dev": "gridsome develop",
+    "deploy": "yarn build && firebase deploy",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "clean": "rm -rf dist/",
     "clearCache": "rm -rf node_modules/.cache/ src/.temp .cache"
