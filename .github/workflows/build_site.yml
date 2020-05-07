@@ -20,6 +20,6 @@ jobs:
           env: 
             sanityToken: ${{ secrets.sanityToken }}
         - name: firebase deploy
-          run: yarn firebase deploy --token "$firebaseToken"
+          run: yarn firebase deploy --token "$firebaseToken" --only hosting
           env:
             firebaseToken: ${{ secrets.firebaseToken }}
