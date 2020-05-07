@@ -15,7 +15,11 @@ jobs:
             node-version: '12'
         - name: install npm packages
           run: yarn install --only production
-        - name: build & deploy
-          run: yarn deploy
+        - name: gridsome build
+          run: yarn gridsome build
           env: 
             sanityToken: ${{ secrets.sanityToken }}
+        - name: firebase deploy
+          run: yarn firebase deploy --token "$firebaseToken"
+          env:
+            firebaseToken: ${{ secrets.firebaseToken }}
