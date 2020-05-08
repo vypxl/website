@@ -69,4 +69,8 @@ query Post($id: ID!) {
 .tagbox {
     width: 80%;
 }
+
+.box {
+    margin-bottom: 2.5em;
+}
 </style>

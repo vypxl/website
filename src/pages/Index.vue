@@ -25,7 +25,7 @@ export default {
     margin-left: 1rem;
 }
 
-.wrap * {
-    text-align: center;
-}
+// .wrap * {
+//     text-align: center;
+// }
 </style>
