@@ -43,6 +43,9 @@ query Post($id: ID!) {
 </page-query>
 
 <style lang="scss" scoped>
+p {
+    text-align: justify;
+}
 .title {
     text-align: center;
 }
