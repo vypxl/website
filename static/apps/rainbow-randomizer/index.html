@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title>Rainbow 6 Operator Randomizer</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="index.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    </head>
+    <body>
+        <div class="wrap" id="app">
+            <div class="left-container">
+                <div class="modes">
+                    <div 
+                        class="attack-label" 
+                        v-bind:class="{ active: mode === 'attack'}" 
+                        @click="changeMode('attack')"
+                    >
+                        Attack
+                    </div>
+                    <div 
+                        class="defend-label" 
+                        v-bind:class="{ active: mode === 'defend'}" 
+                        @click="changeMode('defend')"
+                        >
+                        Defend
+                    </div>
+                </div>
+                <div class="vspace"></div>
+                <table class="operator-list">
+                    <tr>
+                        <th class="operator-list-cell">Name</th>
+                        <th class="operator-list-cell">Nickname</th>
+                    </tr>
+                    <tr
+                        class="operator-list-item"
+                        v-for="op in opdata[mode]"
+                    >
+                        <td 
+                            class="operator-list-cell operator-list-name"
+                            @click="toggleEnabled(op)"
+                            v-bind:class="{ 'not-available': !op.available }"
+                        >{{ op.name }}</td>
+                        <td 
+                            class="operator-list-cell operator-list-nickname"
+                            @click="updateNickname(op)"
+                        >{{ op.nickname ? op.nickname : "" }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="lborder"></div>
+            <div class="right-container">
+                <h1 id="choice">
+                    <span>Your operator:</span>
+                    <br>
+                    <span v-html="choice.nickname ? choice.nickname : choice.name"></span>
+                </h1>
+            </div>
+        </div>
+        <script src="index.js"></script>
+    </body>
+</html>

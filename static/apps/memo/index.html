@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Quick Memos!</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+    <style media="screen">
+      @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,300,200,100');
+      * {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 300;
+        padding: 0;
+        margin: 0;
+      }
+
+      body {
+        background: #eee;
+        min-width: 220pt;
+      }
+
+      .header {
+        font-size: 40pt;
+        font-weight: 300;
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .wrap {
+        position: absolute;
+        font-size: 60pt;
+        width: 100%;
+        text-align: center;
+        top: 100px;
+      }
+
+      .cards {
+        padding-left: 10%;
+      }
+
+      .card {
+        width: 90%;
+        left: 10%;
+        background: white;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px 0 #bbb, 0 6px 20px 0 #bbb;
+        word-wrap: break-word;
+      }
+    </style>
+  </head>
+  <body>
+  <div id="app">
+    <div class="header">Memos!</div>
+    <div class="wrap">
+      <div class="cards">
+        <div class="card" v-for="item in memos">{{ item }}</div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      let app = new Vue({
+        el: "#app",
+        data: {
+          memos: []
+        },
+        methods: {
+
+        }
+      })
+
+      let qm = window.location.href.split('?')[1]
+      if(qm) app.memos = decodeURI(qm).split(';')
+
+    </script>
+  </div>
+  </body>
+</html>

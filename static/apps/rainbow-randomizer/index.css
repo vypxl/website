@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.wrap {
+    margin: 2em;
+    display: grid;
+    grid-template-columns: 1fr 2em 2em 1fr;
+    grid-template-areas: "left . lborder right";
+    height: calc(100vh - 4em);
+}
+
+.left-container {
+    grid-area: left;
+    /* display: grid; */
+}
+
+.modes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.modes > div {
+    font-size: 20pt;
+    height: 30pt;
+    align-self: center;
+    padding-top: 5pt;
+    /* justify-self: center; */
+    text-align: center;
+    background-color: #555;
+    user-select: none;
+}
+
+.attack-label.active {
+    background-color: #3399ff;
+}
+
+.defend-label.active {
+    background-color: #ff7f50;
+}
+
+.vspace {
+    width: 0px;
+    height: 2em;
+}
+
+.operator-list {
+    width: 100%;
+    text-align: center;
+}
+
+.operator-list-cell {
+    font-size: 15pt;
+    height: 20pt;
+}
+
+.operator-list-name {
+    user-select: none;
+    cursor: pointer;
+}
+
+.operator-list-name.not-available {
+    background-color: #ff9980;
+}
+
+.operator-list-nickname {
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+.lborder {
+    grid-area: lborder;
+    border-left: 1px dashed black;
+}
+
+.right-container {
+    grid-area: right;
+    justify-self: center;
+    align-self: center;
+}
+
+#choice {
+	text-align: center;
+}

@@ -4,14 +4,19 @@
             slot(name="header")
         div.main
             slot
-        g-link.link(:to="to")
+        g-link.link(:to="to" v-if="!external" internal)
+        a.link(:href="to" v-if="external" rel="noopener" :target="newtab ? '_blank' : ''")
         div.footer
             slot(name="footer")
 </template>
 
 <script>
 export default {
-    props: ['to'],
+    props: {
+        to: String,
+        external: Boolean,
+        newtab: Boolean,
+    },
 }
 </script>
 
