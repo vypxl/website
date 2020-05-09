@@ -14,7 +14,7 @@
         
         h2 On this website
         g-link(to="/apps") Apps
-        span - a collectionsmall standalone web apps by me
+        span - a collection of small standalone web apps by me
 </template>
 
 <script>
