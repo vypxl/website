@@ -1,249 +1,296 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Timing Stuffz!</title>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
-		<style media="screen">
-			@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,300,200,100');
-			* {
-    		font-family: 'Roboto Mono', sans-serif;
-    		font-weight: 200;
-				padding: 0;
-				margin: 0;
-				user-select: none;
-			}
-			body {
-				background: #455a64;
-				min-width: 220pt;
-			}
-			.header {
-				font-size: 40pt;
-				font-weight: 300;
-				text-align: center;
-				margin-top: 20px;
-				color: #8BC34A;
-			}
-			.wrap {
-				position: absolute;
-	    	font-size: 60pt;
-				width: 100%;
-				text-align: center;
-				top: 100px;
-				color: #00c9bb;
-			}
-			.secondary {
-				color: #8BC34A;
-			}
-			.millies {
-				font-size: 15pt;
-			}
+    <head>
+        <meta charset="utf-8" />
+        <title>Timing Stuffz!</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+        <style media="screen">
+            @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,300,200,100');
+            * {
+                font-family: 'Roboto Mono', sans-serif;
+                font-weight: 200;
+                padding: 0;
+                margin: 0;
+                user-select: none;
+            }
+            body {
+                background: #455a64;
+                min-width: 220pt;
+            }
+            .header {
+                font-size: 40pt;
+                font-weight: 300;
+                text-align: center;
+                margin-top: 20px;
+                color: #8bc34a;
+            }
+            .wrap {
+                position: absolute;
+                font-size: 60pt;
+                width: 100%;
+                text-align: center;
+                top: 100px;
+                color: #00c9bb;
+            }
+            .secondary {
+                color: #8bc34a;
+            }
+            .millies {
+                font-size: 15pt;
+            }
 
-			.space {
-				display: block;
-				height: 20px;
-			}
+            .space {
+                display: block;
+                height: 20px;
+            }
 
-			.mode-switch {
-				position: absolute;
-				bottom: 20pt;
-				width: 100%;
-				text-align: center;
-				font-size: 30pt;
-			}
-			.mode-button {
-				cursor: pointer;
-				height: 40pt;
-				display: inline-block;
-				min-width: 200pt;
-				margin: 0 auto;
-				border: 1px solid #689F38;
-				border-radius: 20px;
-				color: #00c9bb;
-			}
+            .mode-switch {
+                position: absolute;
+                bottom: 20pt;
+                width: 100%;
+                text-align: center;
+                font-size: 30pt;
+            }
+            .mode-button {
+                cursor: pointer;
+                height: 40pt;
+                display: inline-block;
+                min-width: 200pt;
+                margin: 0 auto;
+                border: 1px solid #689f38;
+                border-radius: 20px;
+                color: #00c9bb;
+            }
 
-			.control-buttons {
-				font-size: 25pt;
-			}
-			.control-button {
-				cursor: pointer;
-				height: 35pt;
-				display: inline-block;
-				min-width: 175pt;
-				margin: 0 auto;
-				border: 1px solid #689F38;
-				border-radius: 20px;
-				color: #00c9bb;
-			}
+            .control-buttons {
+                font-size: 25pt;
+            }
+            .control-button {
+                cursor: pointer;
+                height: 35pt;
+                display: inline-block;
+                min-width: 175pt;
+                margin: 0 auto;
+                border: 1px solid #689f38;
+                border-radius: 20px;
+                color: #00c9bb;
+            }
 
-			.active {
-				border: 1px solid #0097A7;
-			}
-			.transparent {
-				color: transparent;
-			}
-			.oneleft {
-				margin-left: -1ch;
-			}
-		</style>
-	</head>
-	<body>
-	<div id="app">
-		<div class="header">Timing!</div>
-		<div class="wrap">
-			<div class="hours oneleft">  <span v-bind:class="{ transparent: (mode == 'sw' ? swv : tv) > -3600000 || hours == 0 }">-</span>{{ hours }}<span class="secondary"> H</span></div>
-			<div class="minutes oneleft"><span v-bind:class="{ transparent: (mode == 'sw' ? swv : tv) > -60000 || minutes == 0 }">-</span>{{ minutes }}<span class="secondary"> M</span></div>
-			<div class="seconds oneleft"><span v-bind:class="{ transparent: (mode == 'sw' ? swv : tv) > -1000 || seconds == 0 }">-</span>{{ seconds }}<span class="secondary"> S</span></div>
-			<div class="millies oneleft"><span v-bind:class="{ transparent: (mode == 'sw' ? swv : tv) >= 0 || millies == 0 }">-</span>{{ millies }}<span class="secondary"> m</span></div>
-			<div class="space"></div>
-			<div class="control-buttons">
-				<div class="button control-button start-stop" v-on:click="startstop">
-					<span v-if="(mode == 'sw' && !swrunning) || (mode == 't' && !trunning)">Start</span>
-					<span v-else>Stop</span>
-				</div>
-				<div class="space"></div>
-				<div class="button control-button reset" v-on:click="reset">Reset</div>
-				<div class="space"></div>
-				<div class="button control-button lock" v-bind:class="{ active: mode == 'sw' ? swlock : tlock }" v-on:click="if(mode == 'sw') swlock = !swlock; else tlock = !tlock">Lock</div>
-			</div>
-		</div>
-		<div class="mode-switch">
-			<div class="button mode-button stopwatch" v-bind:class="{ active: mode == 'sw' }" v-on:click="switchMode('sw')"><span>Stopwatch</span></div>
-			<div class="space"></div>
-			<div class="button mode-button timer" v-bind:class="{ active: mode == 't'}" v-on:click="switchMode('t')"><span>Timer</span></div>
-		</div>
-		<script type="text/javascript">
-			let app = new Vue({
-				el: "#app",
-				data: {
-					hours: '00',
-					minutes: '00',
-					seconds: '00',
-					millies: '000',
-					swv: 0,
-					swneg: false,
-					tv: 0,
-					tneg: false,
-					mode: 'sw',
-					swrunning: false,
-					trunning: false,
-					swlock: false,
-					tlock: false
-				},
-				methods: {
-					startstop: () => {
-						if(app.mode == 'sw') app.swrunning = !app.swrunning
-						else app.trunning = !app.trunning
-					},
-					reset: () => {
-						if(app.mode == 'sw') {
-							app.swv = 0
-							app.swrunning = false
-						} else {
-							app.tv = 0
-							app.trunning = false
-						}
-					},
-					switchMode: (which) => {
-						if(!which) {
-							app.mode = app.mode == 'sw' ? 't' : 'sw'
-						} else {
-							app.mode = which
-						}
-					}
-				}
-			})
+            .active {
+                border: 1px solid #0097a7;
+            }
+            .transparent {
+                color: transparent;
+            }
+            .oneleft {
+                margin-left: -1ch;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <div class="header">Timing!</div>
+            <div class="wrap">
+                <div class="hours oneleft">
+                    <span
+                        v-bind:class="{ transparent: (mode == 'sw' ? swv : tv) > -3600000 || hours == 0 }"
+                        >-</span
+                    >{{ hours }}<span class="secondary"> H</span>
+                </div>
+                <div class="minutes oneleft">
+                    <span
+                        v-bind:class="{ transparent: (mode == 'sw' ? swv : tv) > -60000 || minutes == 0 }"
+                        >-</span
+                    >{{ minutes }}<span class="secondary"> M</span>
+                </div>
+                <div class="seconds oneleft">
+                    <span
+                        v-bind:class="{ transparent: (mode == 'sw' ? swv : tv) > -1000 || seconds == 0 }"
+                        >-</span
+                    >{{ seconds }}<span class="secondary"> S</span>
+                </div>
+                <div class="millies oneleft">
+                    <span
+                        v-bind:class="{ transparent: (mode == 'sw' ? swv : tv) >= 0 || millies == 0 }"
+                        >-</span
+                    >{{ millies }}<span class="secondary"> m</span>
+                </div>
+                <div class="space"></div>
+                <div class="control-buttons">
+                    <div
+                        class="button control-button start-stop"
+                        v-on:click="startstop"
+                    >
+                        <span
+                            v-if="(mode == 'sw' && !swrunning) || (mode == 't' && !trunning)"
+                            >Start</span
+                        >
+                        <span v-else>Stop</span>
+                    </div>
+                    <div class="space"></div>
+                    <div class="button control-button reset" v-on:click="reset">
+                        Reset
+                    </div>
+                    <div class="space"></div>
+                    <div
+                        class="button control-button lock"
+                        v-bind:class="{ active: mode == 'sw' ? swlock : tlock }"
+                        v-on:click="if(mode == 'sw') swlock = !swlock; else tlock = !tlock"
+                    >
+                        Lock
+                    </div>
+                </div>
+            </div>
+            <div class="mode-switch">
+                <div
+                    class="button mode-button stopwatch"
+                    v-bind:class="{ active: mode == 'sw' }"
+                    v-on:click="switchMode('sw')"
+                >
+                    <span>Stopwatch</span>
+                </div>
+                <div class="space"></div>
+                <div
+                    class="button mode-button timer"
+                    v-bind:class="{ active: mode == 't'}"
+                    v-on:click="switchMode('t')"
+                >
+                    <span>Timer</span>
+                </div>
+            </div>
+            <script type="text/javascript">
+                let app = new Vue({
+                    el: '#app',
+                    data: {
+                        hours: '00',
+                        minutes: '00',
+                        seconds: '00',
+                        millies: '000',
+                        swv: 0,
+                        swneg: false,
+                        tv: 0,
+                        tneg: false,
+                        mode: 'sw',
+                        swrunning: false,
+                        trunning: false,
+                        swlock: false,
+                        tlock: false,
+                    },
+                    methods: {
+                        startstop: () => {
+                            if (app.mode == 'sw') app.swrunning = !app.swrunning
+                            else app.trunning = !app.trunning
+                        },
+                        reset: () => {
+                            if (app.mode == 'sw') {
+                                app.swv = 0
+                                app.swrunning = false
+                            } else {
+                                app.tv = 0
+                                app.trunning = false
+                            }
+                        },
+                        switchMode: which => {
+                            if (!which) {
+                                app.mode = app.mode == 'sw' ? 't' : 'sw'
+                            } else {
+                                app.mode = which
+                            }
+                        },
+                    },
+                })
 
-			function addToCur(dir, amount) {
-				if(app.mode == 'sw' ? app.swlock : app.tlock) return
-				if(dir > 0) {
-					if(app.mode == 'sw') app.swv += amount
-					else app.tv += amount
-				} else {
-					if(app.mode == 'sw') app.swv -= amount
-					else app.tv -= amount
-				}
-			}
+                function addToCur(dir, amount) {
+                    if (app.mode == 'sw' ? app.swlock : app.tlock) return
+                    if (dir > 0) {
+                        if (app.mode == 'sw') app.swv += amount
+                        else app.tv += amount
+                    } else {
+                        if (app.mode == 'sw') app.swv -= amount
+                        else app.tv -= amount
+                    }
+                }
 
-			$('.hours').on("mousewheel", (e) => { addToCur(e.originalEvent.wheelDelta, 1000*60*60) })
-			$('.minutes').on("mousewheel", (e) => { addToCur(e.originalEvent.wheelDelta, 1000*60) })
-			$('.seconds').on("mousewheel", (e) => { addToCur(e.originalEvent.wheelDelta, 1000) })
-			$('.millies').on("mousewheel", (e) => { addToCur(e.originalEvent.wheelDelta, 10) })
+                document.querySelector('.hours').addEventListener('mousewheel', e => {
+                    addToCur(e.wheelDelta, 1000 * 60 * 60)
+                })
+                document.querySelector('.minutes').addEventListener('mousewheel', e => {
+                    addToCur(e.wheelDelta, 1000 * 60)
+                })
+                document.querySelector('.seconds').addEventListener('mousewheel', e => {
+                    addToCur(e.wheelDelta, 1000)
+                })
+                document.querySelector('.millies').addEventListener('mousewheel', e => {
+                    addToCur(e.wheelDelta, 10)
+                })
 
-			$('html').keydown((e) => {
-				//Keycodes
-				//space 		32
-				//tab   		9
-				//enter 		13
-				//backspace 8
-				switch (e.which) {
-					case 32:
-						app.startstop()
-						break;
-					case 9:
-						app.switchMode()
-						break;
-					case 13:
-						// todo: lap
-						break;
-					case 8:
-						// todo: delete lap
-						break;
-					default:
+                document.addEventListener('keydown', e => {
+                    switch (e.code) {
+                        case 'Space':
+                            app.startstop()
+                            break
+                        case 'Tab':
+                            e.preventDefault()
+                            app.switchMode()
+                            break
+                        case 'Enter':
+                            // todo: lap
+                            break
+                        case 'Backspace':
+                            // todo: delete lap
+                            break
+                        default:
+                    }
+                })
 
-				}
-			})
+                let last = new Date()
 
-			let last = new Date()
+                setInterval(() => {
+                    now = new Date()
+                    let delta = now - last
+                    last = now
 
-			setInterval(() => {
-				now = new Date()
-				let delta = now - last
-				last = now
+                    function n(i) {
+                        i = Math.abs(i)
+                        if (i < 10) return '0' + i.toString()
+                        else return i.toString()
+                    }
 
-				function n(i) {
-					i = Math.abs(i)
-					if(i < 10) return '0' + i.toString()
-					else return i.toString()
-				}
+                    function nm(i) {
+                        i = Math.abs(i)
+                        if (i == 0) return '000'
+                        else if (i < 10) return '00' + i.toString()
+                        else if (i < 100) return '0' + i.toString()
+                        else return i.toString()
+                    }
 
-				function nm(i) {
-					i = Math.abs(i)
-					if(i == 0) return '000'
-					else if(i < 10) return '00' + i.toString()
-					else if(i < 100) return '0' + i.toString()
-					else return i.toString()
-				}
+                    if (app.swrunning) {
+                        app.swv += delta
+                    }
+                    if (app.trunning) {
+                        app.tv -= delta
+                    }
 
-				if(app.swrunning) {
-					app.swv += delta
-				}
-				if(app.trunning) {
-					app.tv -= delta
-				}
+                    function myround(i) {
+                        v = 0
+                        if (i < 0) v = Math.ceil(i)
+                        else if (i > 0) v = Math.floor(i)
+                        return v
+                    }
 
-				function myround(i) {
-					v = 0
-					if(i < 0) v = Math.ceil(i)
-					else if(i > 0) v = Math.floor(i)
-					return v
-				}
-
-				if(app.mode == 'sw') {
-					app.millies = nm(app.swv % 1000)
-					app.seconds = n(myround(app.swv / 1000) % 60)
-					app.minutes = n(myround(app.swv / 1000 / 60) % 60)
-					app.hours = n(myround(app.swv / 1000 / 60 / 60))
-				} else {
-					app.millies = nm(app.tv % 1000)
-					app.seconds = n(myround(app.tv / 1000) % 60)
-					app.minutes = n(myround(app.tv / 1000 / 60) % 60)
-					app.hours = n(myround(app.tv / 1000 / 60 / 60))
-				}
-
-			}, 11)
-		</script>
-	</div>
-	</body>
+                    if (app.mode == 'sw') {
+                        app.millies = nm(app.swv % 1000)
+                        app.seconds = n(myround(app.swv / 1000) % 60)
+                        app.minutes = n(myround(app.swv / 1000 / 60) % 60)
+                        app.hours = n(myround(app.swv / 1000 / 60 / 60))
+                    } else {
+                        app.millies = nm(app.tv % 1000)
+                        app.seconds = n(myround(app.tv / 1000) % 60)
+                        app.minutes = n(myround(app.tv / 1000 / 60) % 60)
+                        app.hours = n(myround(app.tv / 1000 / 60 / 60))
+                    }
+                }, 11)
+            </script>
+        </div>
+    </body>
 </html>
