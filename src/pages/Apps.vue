@@ -8,7 +8,7 @@
             The apps are hosted as static files and can be used from anywhere as their scripts
             come from CDNs.
         
-        linked-box(to="/apps/memo/" external newtab)
+        linked-box(to="/apps/memo/" external)
             template(#header)
                 h1.headline Memo
             p.
