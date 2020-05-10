@@ -44,7 +44,7 @@ function startAnalytics(status) {
             navigator.doNotTrack == 'yes' ||
             navigator.doNotTrack == '1' ||
             navigator.msDoNotTrack == '1' ||
-            window.external.msTrackingProtectionEnabled())
+            (window.external.msTrackingProtectionEnabled && window.external.msTrackingProtectionEnabled()))
     if (status === 'allow' && !dnt) {
         // Google Tag Manager
         ;(function(w, d, s, l, i) {
