@@ -29,6 +29,12 @@
             p.
                 A tool to randomly pick a Rainbow 6 Siege operator. You can even add nicknames!
                 Click on the names on the left to disable certain operators.
+        linked-box(to="/apps/pascal-yeeter" external)
+            template(#header)
+                h1.headline Pascal source code yeeter
+            p.
+                A very rudimentary tool which converts Pascal / Delphi source code into yeets using
+                macros. I saw this on reddit for C++ so I had to recreate it for the <strong>best</strong> language.
 </template>
 
 <style lang="scss">
