@@ -20,7 +20,7 @@
     "lodash": "^4.17.15",
     "node-sass": "^4.13.0",
     "pluralize": "^8.0.0",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "pug-plain-loader": "^1.0.0",
     "rehype-autolink-headings": "^2.0.5",
     "rehype-format": "^3.0.0",
