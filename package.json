@@ -19,7 +19,7 @@
     "firebase-tools": "^10.1.5",
     "gridsome": "^0.7.23",
     "lodash-es": "^4.17.21",
-    "node-sass": "^6",
+    "node-sass": "^7",
     "pluralize": "^8.0.0",
     "pug": "^3.0.2",
     "pug-plain-loader": "^1.1.0",
