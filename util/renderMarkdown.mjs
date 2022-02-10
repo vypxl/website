@@ -42,10 +42,7 @@ class MarkdownRenderer {
     }
 
     render(str) {
-        let rendered = this.processor.processSync(str).toString()
-        console.log(`rendering ${str} to ${rendered}`)
-        return rendered
-        // return this.processor.processSync(str).contents
+        return this.processor.processSync(str).toString()
     }
 }
 
