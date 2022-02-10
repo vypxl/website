@@ -1,13 +1,16 @@
-const { keyBy } = require('lodash')
-const markdownRenderer = new (require('./renderMarkdown.js'))()
-const sanity = require('@sanity/client')({
+import { keyBy } from 'lodash-es'
+import MarkdownRenderer from './renderMarkdown.mjs'
+const markdownRenderer = new MarkdownRenderer()
+import SanityClient from '@sanity/client'
+const sanity = SanityClient({
     projectId: 'dfjtbic3',
     dataset: 'production',
     token: process.env.sanityToken,
     useCdn: false,
+    apiVersion: '1',
 })
 
-const schema = `
+export const schema = `
 type Blogpost implements Node {
   content: String
   description: String
@@ -194,29 +197,26 @@ function createReferences(actions) {
     series.addReference('parts', 'Blogpost')
 }
 
-module.exports = api => {
-    api.loadSource(async actions => {
+export const sourceSanity = async actions => {
+    actions.addSchemaTypes(schema)
 
-        actions.addSchemaTypes(schema)
+    console.log(`Fetching data from Sanity...`)
+    const data = await getData()
 
-        console.log(`Fetching data from Sanity...`)
-        const data = await getData()
+    for (let type of data) {
+        const { typeName, documents, idField, collectionOptions } = type
+        const collection = actions.addCollection({
+            typeName,
+            ...collectionOptions,
+        })
 
-        for (type of data) {
-            const { typeName, documents, idField, collectionOptions } = type
-            const collection = actions.addCollection({
-                typeName,
-                ...collectionOptions,
+        documents.forEach(doc => {
+            collection.addNode({
+                id: doc[idField || 'slug'],
+                ...doc,
             })
+        })
+    }
 
-            documents.forEach(doc => {
-                collection.addNode({
-                    id: doc[idField || 'slug'],
-                    ...doc,
-                })
-            })
-        }
-
-        createReferences(actions)
-    })
+    createReferences(actions)
 }

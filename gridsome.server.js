@@ -1,18 +1,8 @@
-const sourceSanity = require('./util/sourceSanity.js')
+const sanity = './util/sourceSanity.mjs'
 
 module.exports = api => {
-    sourceSanity(api)
-
-    // api.onCreateNode(options => {})
-
-    api.configureWebpack({
-        module: {
-            rules: [
-                {
-                    test: /\.pug$/,
-                    loader: 'pug-plain-loader',
-                },
-            ],
-        },
-    })
+    api.loadSource(actions => import(sanity).then(async plugin => {
+        await plugin.sourceSanity(actions)
+    }))
 }
+

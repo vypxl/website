@@ -8,7 +8,13 @@ module.exports = {
         Tag: '/blog/tag/:slug',
         Series: '/blog/series/:slug',
     },
-
+    chainWebpack: config => {
+      config.module
+      .rule('pug')
+      .test(/\.pug$/)
+      .use('pug-plain-loader')
+      .loader('pug-plain-loader')
+    },
     plugins: [
         {
             use: '@gridsome/plugin-sitemap',
