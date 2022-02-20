@@ -17,7 +17,7 @@
                 div.footer-social
                     a(target="_blank" rel="noopener" href="https://dev.to/vypxl") DEV
                     a(target="_blank" rel="noopener" href="https://github.com/vypxl") GitHub
-            div &copy; 2020 vypxl
+            div &copy; 2022 vypxl
 </template>
 
 <static-query>
