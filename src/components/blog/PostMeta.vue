@@ -1,6 +1,6 @@
 <template lang="pug">
     div.meta
-        span.date Published {{ post.publishedAt }}
+        span.date Published {{ new Date(post.published).toDateString() }}
         span.read-time ~{{ post.readTime }} Minute read
 </template>
 

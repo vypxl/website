@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Tag",
+  "description": "Metadata for a tag on vypxl's personal website",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The display name for the tag"
+    },
+    "slug": {
+      "type": "string",
+      "description": "The unique human-readable identifier to use for this tag"
+    },
+    "description": {
+      "type": "string",
+      "description": "A short description of this tag"
+    },
+    "color": {
+      "type": "string",
+      "description": "The color to use for this tag (as in css)"
+    }
+  },
+  "required": [ "name", "slug", "description", "color" ]
+}
+

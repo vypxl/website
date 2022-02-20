@@ -16,7 +16,7 @@ query Posts {
                 title
                 slug
                 description
-                publishedAt
+                published
                 readTime
                 tags { name, slug, color }
                 series { name, slug }

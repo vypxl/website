@@ -2,17 +2,18 @@
   Layout
     h1.title {{ $page.post.title }}
     post-meta.meta(:post="$page.post")
-    series.series.series-1(v-if="$page.post.series" :data="{ part: $page.post.slug, ...$page.post.series }")
+    series.series.series-1(v-if="$page.post.series" :data="{ part: $page.post.slug, ...$page.post.series, ...$page.post.series_links }")
     tag-box.tagbox(:tags="$page.post.tags")
     div.box
         div.content(v-html="$page.post.content")
-    series.series.series-2(v-if="$page.post.series" :data="{ part: $page.post.slug, ...$page.post.series }")
+    series.series.series-2(v-if="$page.post.series" :data="{ part: $page.post.slug, ...$page.post.series, ...$page.post.series_links }")
 </template>
 
 <script>
 import TagBox from '~/components/blog/TagBox'
 import Series from '~/components/blog/Series'
 import PostMeta from '~/components/blog/PostMeta'
+
 
 export default {
     components: {
@@ -33,10 +34,11 @@ query Post($id: ID!) {
     post: blogpost(id: $id) {
         title
         slug
-        publishedAt
+        published
         readTime
         tags { name, slug, color }
-        series { name, slug, next, prev }
+        series { name, slug }
+        series_links { next, prev }
         content
     }
 }

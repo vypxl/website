@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Post",
+  "description": "Metadata for a post on vypxl's personal website",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "The display name for the post"
+    },
+    "slug": {
+      "type": "string",
+      "description": "The unique human-readable identifier to use for this post"
+    },
+    "description": {
+      "type": "string",
+      "description": "A short description of this post"
+    },
+    "published": {
+      "type": "date",
+      "description": "The date this post was published."
+    },
+    "tags": {
+      "type": "array",
+      "description": "A list of tags this post has (their slugs)",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": "true"
+    }
+  },
+  "required": [ "title", "slug", "description", "published" ]
+}

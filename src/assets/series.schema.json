@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Series",
+  "description": "Metadata for a series on vypxl's personal website",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The display name for the series"
+    },
+    "slug": {
+      "type": "string",
+      "description": "The unique human-readable identifier to use for this series"
+    },
+    "description": {
+      "type": "string",
+      "description": "A short description of this series"
+    },
+    "parts": {
+      "type": "array",
+      "description": "The posts that are in this series. This array should contain their slugs.",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "required": [ "name", "slug", "description", "parts" ]
+}
+
