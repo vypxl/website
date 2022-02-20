@@ -1,9 +1,7 @@
 name: build
 on: 
     push:
-        branches: [ master ]
-    repository_dispatch:
-        types: [ build ]
+        branches: [ main ]
 
 jobs: 
     build:
@@ -17,8 +15,6 @@ jobs:
           run: yarn install --only production
         - name: gridsome build
           run: yarn gridsome build
-          env: 
-            sanityToken: ${{ secrets.sanityToken }}
         - name: firebase deploy
           run: yarn firebase deploy --token "$firebaseToken" --only hosting
           env:
