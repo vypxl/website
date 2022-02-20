@@ -6,5 +6,5 @@ Built with
 
 - Vue
 - Gridsome
-- Sanity
+- Markdown
 - Firebase

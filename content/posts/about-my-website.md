@@ -2,7 +2,7 @@
 title: About my Website
 slug: about-my-website
 tags: [ "webdev" ]
-published: 2020-05-08
+published: 2022-02-20
 description: This article covers the technologies used to build this website and blog, and my journey building it.
 ---
 # About my Website
@@ -16,7 +16,7 @@ What you see is actually my fourth(!!) attempt on creating a website and blog fo
 This website is built on top of a so-called JAMstack.
 JAM stands for **J**avascript, **A**PIs and **M**arkup. JAMstack websites are static, generated pages that are hosted on a static website hosting service. 
 I'm using the static site generator [**Gridsome**](https://gridsome.org). It uses the Javascript framework [**VueJS**](https://vuejs.org) under the hood, which makes it easy for me to extend the site with additional content.
-For the API part, I'm using [**Sanity**](https://sanity.io), a headless Content Management System. 'Headless' means, that it does not provide a frontend like Wordpress but you have to create a frontend yourself and pull the content from the CMS via its API.
+For the API part, I'm using local markdown files that are loaded by my [https://github.com/vypxl/website/blob/main/util/sourceContent.mjs](custom load script).
 The markup part has two sides. First, there is the obvious HTML Markup. I write most of the Markup in [**Pug**](https://pugjs.org) (an HTML preprocessor) though, as it is more enjoyable to me than writing raw HTML. The second part is what I write my blogposts in. This would be **Markdown**. I use markdown because it is easy to write in and easy to convert into beautiful HTML. In addition to that, my custom Markdown renderer I made with the library [Unified](https://unifiedjs.com) makes fancy adjustments like
 
 ```js
@@ -30,12 +30,11 @@ For writing styles, I use **Sass** or, more specifically, SCSS. It allows for so
 
 I used Visual Studio Code for developing my website. In my opinion, it is the best code editor currently available. Gridsome, my static site generator, relies on [NodeJS](https://nodejs.org) and [Yarn](https://yarnpkg.org), so I used both these tools. For hosting, I use [**Firebase**](https://firebase.google.com) Hosting. I chose it over other hosting providers because it gave me the most freedom in configuring my website and the most value for a free plan.
 
-Instead of manually rebuilding and deploying the website every time I change something, a Github action takes care of the redeployment. When I push a commit to my master branch or when I publish a new post in my Sanity dashboard, Github actions rebuilds the website and deploys it to firebase.
-I actually had to create a firebase cloud function to relay my Sanity webhook to Github, because Sanity does not allow sending customized HTTP requests.
+Instead of manually rebuilding and deploying the website every time I change something, a Github action takes care of the redeployment. When I push a commit to my main branch, Github actions rebuilds the website and deploys it to firebase.
 
 ## TL;DR
 
-NodeJS, Gridsome, VueJS, Pug, Sass, Unified, Sanity, Firebase. You can find the source code of the website over on [Github](https://github.com/vypxl/website)
+NodeJS, Gridsome, VueJS, Pug, Sass, Markdown, Unified, Firebase. You can find the source code of the website over on [Github](https://github.com/vypxl/website)
 
 ## Thoughts
 
