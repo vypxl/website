@@ -11,6 +11,7 @@
     "clearCache": "rm -rf node_modules/.cache/ src/.temp .cache"
   },
   "dependencies": {
+    "@babel/eslint-parser": "^7.19.1",
     "@gridsome/plugin-sitemap": "^0.4.0",
     "@mapbox/rehype-prism": "^0.8.0",
     "axios": "^0.25.0",
@@ -46,11 +47,12 @@
     "unified": "^10"
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.0.0",
+    "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-gridsome": "^1.6.2",
     "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.5.1"
+    "eslint-plugin-vue": "^9.9.0",
+    "prettier": "^2.5.1",
+    "prettier-eslint": "^15.0.1"
   }
 }
