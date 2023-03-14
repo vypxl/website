@@ -48,6 +48,10 @@ export default {
     z-index: 0;
 }
 
+.main {
+    text-align: justify;
+}
+
 .footer {
     & > * {
         display: inline-block;

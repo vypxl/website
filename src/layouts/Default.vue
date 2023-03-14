@@ -6,7 +6,7 @@
                 g-link(to="/") {{ $static.metadata.siteName }}
             nav.nav
                 g-link.nav-link(to="/blog") Blog
-                g-link.nav-link(to="/about") About
+                g-link.nav-link(to="/portfolio") Portfolio
         div.wrap
             slot
         footer.footer
@@ -15,9 +15,9 @@
                     g-link(to="/legal") disclaimer / privacy / cookies (legal)
                     div contact: thomas &lt;at&gt; vypxl.io
                 div.footer-social
-                    a(target="_blank" rel="noopener" href="https://dev.to/vypxl") DEV
                     a(target="_blank" rel="noopener" href="https://github.com/vypxl") GitHub
-            div &copy; 2022 vypxl
+                    a(target="_blank" rel="noopener" href="https://linkedin.com/in/thomas-meyer-lehnert") LinkedIn
+            div &copy; 2023 vypxl
 </template>
 
 <static-query>
@@ -50,7 +50,7 @@
 .nav-l {
     display: flex;
     align-items: center;
-    
+
     & > * {
         margin-right: 1em;
     }
