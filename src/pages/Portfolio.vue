@@ -36,23 +36,29 @@
 
         h3.subheading Programming Languages
         p.text.
-            Languages I am proficient in: C, C++, Javascript/Typescript, Python, Ruby, Haskell, Crystal<br>
-            Languages I am familiar with: Java, Kotlin, Scala, C#, Go, Rust, Lua, Bash, Assembly<br>
+            Languages I am proficient in: C, C++, Javascript/Typescript, Python, Ruby, Haskell and Crystal<br>
+            Languages I am familiar with: Java, Kotlin, Scala, C#, Go, Rust, Lua, Bash and Assembly<br>
             My biggest projects are written in C++ and Crystal. My web projects use HTML and CSS as well of course :)
 
         h3.subheading Frameworks and Libraries
         p.text.
-            Web technologies and frameworks I have used: Vue, Nuxt, React, Next, Svelte, SvelteKit<br>
+            Web technologies and frameworks I have used: Vue, Nuxt, React, Next, Svelte and SvelteKit<br>
             My favorite framework award goes to SvelteKit, although I use Vue for this website.
             Other than the UI libraries, I've worked with TailwindCSS, DaisyUI and Bootstrap.
         p.text.
             Some libraries I have used for my lower level programming are:
             SDL2, SFML, OpenGL, and GLFW.
 
-        h3.subheading Miscellaneous
+        h3.subheading Other Technologies
         p.text.
-            I have experience using Docker, Git, and GitHub Actions. At some point I delved into how to program
-            the Nintendo Gameboy, built a led controller using a Raspberry Pi, built a chrome extension,
+            I have experience using Docker, Git, and GitHub Actions. My daily driver operating system is Manjaro Linux.
+            I operate two linux servers, one at home and one in oracle cloud. I have used Postgres and Meilisearch, Firebase
+            and Heroku.
+
+        h3.subheading Miscellaneous Experience
+        p.text.
+            At some point I delved into how to program the Nintendo Gameboy,
+            built a led controller using a Raspberry Pi, built a chrome extension,
             and developed a small quality of life app for fellow school students. Sometimes, I make music using my
             DAW of choice, <a target="blank" rel="noopener" href="https://image-line.com">FL Studio</a>.
 
