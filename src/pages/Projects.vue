@@ -41,7 +41,7 @@
             template(#header)
                 h1.headline Cocktail Coach
             p.
-                Cocktail Coach is a web app me and my friends built for a hackathon.
+                Cocktail Coach is a web app me and my friends built for a hackathon in 48 hours.
                 It is a collection of cocktail recipes recipes we sourced from a free database.
                 It allows full text searching recipes, saving an ingredient list and filtering by it,
                 drink recommendations and more. Check it out using the link on the GitHub page!
@@ -69,7 +69,7 @@ import LinkedBox from '../components/LinkedBox'
 
 export default {
     metaInfo: {
-        title: 'Apps',
+        title: 'Projects',
     },
     components: {
         'linked-box': LinkedBox,
