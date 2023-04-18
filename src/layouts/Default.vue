@@ -2,7 +2,7 @@
     div.layout
         header.header
             div.nav-l
-                g-image(src="../favicon.png")
+                g-image(src="../favicon.png" width=32 height=32)
                 g-link(to="/") {{ $static.metadata.siteName }}
             nav.nav
                 g-link.nav-link(to="/blog") Blog
