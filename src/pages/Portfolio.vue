@@ -23,7 +23,7 @@
             challenges, like the 25 day problem solving challenge <a target="blank" rel="noopener" href="https://adventofcode.com/">Advent of Code</a>
             or participating in hackathons.<br>
 
-        p.text
+        p.text.
             Learning new things is a lot of fun, so I often experiment with interesting topics I discover. That
             gave me the skill of being able to quickly adapt to and new technologies. Learn about some of the
             technologies I am familiar with in the next section.
