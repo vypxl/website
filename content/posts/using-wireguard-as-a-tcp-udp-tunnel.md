@@ -1,9 +1,9 @@
 ---
-title: Using wireguard as a TCP/UDP tunnel
+title: Using Wireguard as a TCP/UDP tunnel
 slug: using-wireguard-as-a-tcp-udp-tunnel
 tags: []
 published: 2023-07-16
-description: My journey and how I set up wireguard to expose the services running on my home server to the internet using wireguard to tunnel through NAT boundaries, with the help of an Oracle Cloud free instance.
+description: My journey and how I set up Wireguard to expose the services running on my home server to the internet using Wireguard to tunnel through NAT boundaries, with the help of an Oracle Cloud free instance.
 ---
 
 # Using wireguard as a TCP/UDP tunnel
@@ -37,18 +37,18 @@ Disclaimer: This is what worked for me. You might have to modify some parts of t
 
 Prerequisites:
 
--   (H) Home server
--   (C) Cloud Server (VPS)
+- (H) Home server
+- (C) Cloud Server (VPS)
 
 Steps:
 
--   Create a wireguard connection between H and C
--   Configure C to forward incoming traffic on specific ports to H via our WG interface
--   Configure H to only send traffic that was initiated by C back to C. (More on this later)
+1. Create a wireguard connection between H and C
+2. Configure C to forward incoming traffic on specific ports to H via our WG interface
+3. Configure H to only send traffic that was initiated by C back to C. (More on this later)
 
 So an incoming request would be routed like this:
 
-Device { request } -> C.example.com -> H (behind NAT) { respond } -> C.example.com -> Device
+Device (request) -> C.example.com -> H (behind NAT) (respond) -> C.example.com -> Device
 
 ### Cloud Server (C) configuration
 
