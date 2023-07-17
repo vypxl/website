@@ -1,26 +1,27 @@
 ---
 title: About my Website
 slug: about-my-website
-tags: [ "webdev" ]
+tags: ['webdev']
 published: 2022-02-20
 description: This article covers the technologies used to build this website and blog, and my journey building it.
 ---
+
 # About my Website
 
 Hey! Welcome and thank you for visiting my personal website. In this first blogpost of mine, I want to talk about all the things that went into developing it.
 
-What you see is actually my fourth(!!) attempt on creating a website and blog for myself, the first three attempts remain unfinished though. Also, I won't talk about the *great* programming practices I used back then. But now I can proudly say that I have a personal website, one thing I always wanted to have since I started programming. Now then, how did I accomplish what you can see here?
+What you see is actually my fourth(!!) attempt on creating a website and blog for myself, the first three attempts remain unfinished though. Also, I won't talk about the _great_ programming practices I used back then. But now I can proudly say that I have a personal website, one thing I always wanted to have since I started programming. Now then, how did I accomplish what you can see here?
 
 ## Tech Stack
 
 This website is built on top of a so-called JAMstack.
-JAM stands for **J**avascript, **A**PIs and **M**arkup. JAMstack websites are static, generated pages that are hosted on a static website hosting service. 
+JAM stands for **J**avascript, **A**PIs and **M**arkup. JAMstack websites are static, generated pages that are hosted on a static website hosting service.
 I'm using the static site generator [**Gridsome**](https://gridsome.org). It uses the Javascript framework [**VueJS**](https://vuejs.org) under the hood, which makes it easy for me to extend the site with additional content.
-For the API part, I'm using local markdown files that are loaded by my [https://github.com/vypxl/website/blob/main/util/sourceContent.mjs](custom load script).
+For the API part, I'm using local markdown files that are loaded by my [custom load script](https://github.com/vypxl/website/blob/main/util/sourceContent.mjs).
 The markup part has two sides. First, there is the obvious HTML Markup. I write most of the Markup in [**Pug**](https://pugjs.org) (an HTML preprocessor) though, as it is more enjoyable to me than writing raw HTML. The second part is what I write my blogposts in. This would be **Markdown**. I use markdown because it is easy to write in and easy to convert into beautiful HTML. In addition to that, my custom Markdown renderer I made with the library [Unified](https://unifiedjs.com) makes fancy adjustments like
 
 ```js
-rendering("Code").snippets;
+rendering('Code').snippets
 ```
 
 or automatically linking headings.
