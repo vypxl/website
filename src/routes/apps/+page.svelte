@@ -11,7 +11,7 @@
 
 <ul>
   <li>
-    <LinkedBox to="/apps/memo/" external>
+    <LinkedBox to="/apps/memo/index.html" external>
       <h1 slot="header" class="headline">Memo</h1>
       <p>
         This app allows the creation of very simple notes, using the url query parameters. To create notes, you have to
@@ -22,7 +22,7 @@
     </LinkedBox>
   </li>
   <li>
-    <LinkedBox to="/apps/timer" external>
+    <LinkedBox to="/apps/timer/index.html" external>
       <h1 slot="header" class="headline">Timer</h1>
       <p>
         A small but handy timer application, supporting timer and stopwatch mode. Modify the time with the scroll wheel.
@@ -31,7 +31,7 @@
     </LinkedBox>
   </li>
   <li>
-    <LinkedBox to="/apps/rainbow-randomizer" external>
+    <LinkedBox to="/apps/rainbow-randomizer/index.html" external>
       <h1 slot="header" class="headline">Rainbow 6 Randomizer</h1>
       <p>
         A tool to randomly pick a Rainbow 6 Siege operator. You can even add nicknames! Click on the names on the left
@@ -40,7 +40,7 @@
     </LinkedBox>
   </li>
   <li>
-    <LinkedBox to="/apps/pascal-yeeter" external>
+    <LinkedBox to="/apps/pascal-yeeter/index.html" external>
       <h1 slot="header" class="headline">Pascal source code yeeter</h1>
       <p>
         A very rudimentary tool which converts Pascal / Delphi source code into yeets using macros. I saw this on reddit

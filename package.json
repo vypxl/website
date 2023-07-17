@@ -15,7 +15,7 @@
   "devDependencies": {
     "@beyonk/gdpr-cookie-consent-banner": "^10.0.0",
     "@hbsnow/rehype-sectionize": "^1.0.7",
-    "@sveltejs/adapter-auto": "^2.1.0",
+    "@sveltejs/adapter-static": "^2.0.2",
     "@sveltejs/kit": "^1.22.3",
     "@types/mdast": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
