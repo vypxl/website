@@ -9,7 +9,7 @@
   <ul>
     {#each posts as post}
       <li>
-        <PostPreview {post} />
+        <PostPreview meta={post.meta} />
       </li>
     {/each}
   </ul>

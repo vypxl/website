@@ -1,16 +1,8 @@
-import { error } from '@sveltejs/kit'
 import type { PageLoad } from './$types'
-import type { Post } from '$lib/types'
+import { loadPost } from '$lib/content'
 
 export const load = (async ({ params }) => {
-  try {
-    const post = await import(`/content/posts/${params.slug}.md`)
+  const post = await loadPost(params.slug)
 
-    return {
-      content: post.default,
-      meta: post.metadata as Post,
-    }
-  } catch (e) {
-    throw error(404, `Could not find ${params.slug}`)
-  }
+  return { post }
 }) satisfies PageLoad

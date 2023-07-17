@@ -1,22 +1,15 @@
 import { json } from '@sveltejs/kit'
-import type { SvelteComponent } from 'svelte'
 import type { Post } from '$lib/types'
+import { renderPost } from '$lib/markdown'
 
 async function getAllPosts() {
-  const paths = import.meta.glob('/content/posts/*.md', { eager: true }) as Record<string, SvelteComponent>
+  const paths = import.meta.glob('/content/posts/*.md', { as: 'raw', eager: true }) as Record<string, string>
 
-  const extractSlug = (path: string): string | undefined => path.split('/').at(-1)?.replace('.md', '')
-  const isValid = (file: SvelteComponent): boolean => 'metadata' in file
-  const makePost = (slug: string, file: SvelteComponent): Post =>
-    ({ ...file.metadata, published: new Date(file.metadata.published), slug } satisfies Post)
   const comparePublishDate = (first: Post, second: Post): number =>
-    second.published.getTime() - first.published.getTime()
+    new Date(second.meta.published).getTime() - new Date(first.meta.published).getTime()
 
-  const posts: Post[] = Object.entries(paths)
-    .map(([path, file]): [string | undefined, SvelteComponent] => [extractSlug(path), file])
-    .filter(([slug, file]) => slug && isValid(file))
-    .map(([slug, file]) => makePost(slug!, file))
-    .sort((a, b) => comparePublishDate(a, b))
+  const posts = await Promise.all(Object.values(paths).map(renderPost))
+  posts.sort(comparePublishDate)
 
   return posts
 }
