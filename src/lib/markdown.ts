@@ -26,8 +26,10 @@ import rehypeSlug from 'rehype-slug'
 import rehypeStringify from 'rehype-stringify'
 
 import type { Root, Text, Code, InlineCode } from 'mdast'
+import type { TextDirective } from 'mdast-util-directive'
 import yaml from 'yaml'
 import { visit } from 'unist-util-visit'
+
 import type { Post, PostMeta } from './types'
 
 function readingTimePlugin(): Transformer<Root, Root> {
@@ -40,6 +42,35 @@ function readingTimePlugin(): Transformer<Root, Root> {
   }
 }
 
+function abbrPlugin(): Transformer<Root, Root> {
+  interface AbbrDirective extends TextDirective {
+    data: {
+      hName?: string
+      hProperties?: { title: string }
+    }
+  }
+
+  return (tree, file) => {
+    // Transform abbr directives into abbr elements
+    visit(tree, ['textDirective'], _node => {
+      const node = _node as unknown as AbbrDirective
+      if (node.name !== 'abbr') return
+
+      if (!node.children || node.children.length !== 1 || node.children[0].type !== 'text')
+        file.fail('Abbr directive must have exactly one text child.' + JSON.stringify(node))
+
+      if (!node.attributes || !('value' in node.attributes))
+        file.fail('Abbr directive must have a `value` attribute.' + JSON.stringify(node))
+
+      const title = node.attributes!.value!
+
+      const data = node.data || (node.data = {})
+      data.hName = 'abbr'
+      data.hProperties = { title }
+    })
+  }
+}
+
 const processor = unified()
   // Remark plugins
   .use(remarkParse)
@@ -48,6 +79,7 @@ const processor = unified()
 
   .use(remarkCodeTitle)
   .use(remarkDirective)
+  .use(abbrPlugin)
   .use(remarkEmoji, { accessible: true, padSpaceAfter: true })
   .use(remarkGfm)
   .use(remarkGithub, { repository: 'vypxl/website' })
