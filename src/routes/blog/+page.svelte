@@ -1,8 +1,6 @@
 <script lang="ts">
   import PostListing from '$lib/components/blog/PostListing.svelte'
-  import type { PageData } from './$types'
-
-  export let data: PageData
+  import { posts } from '$lib/content'
 </script>
 
 <h1 class="title">Blog</h1>
@@ -11,7 +9,11 @@
 <!--   <a href="/blog/tags" class="button">Tags</a> -->
 <!-- </div> -->
 <h1 class="headline-underline">All Posts:</h1>
-<PostListing posts={data.posts} />
+<PostListing {posts} />
+
+<svelte:head>
+  <title>Blog - vypxl</title>
+</svelte:head>
 
 <style lang="scss">
   .title {
