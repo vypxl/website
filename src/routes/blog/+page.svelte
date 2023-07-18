@@ -1,6 +1,9 @@
 <script lang="ts">
   import PostListing from '$lib/components/blog/PostListing.svelte'
-  import { posts } from '$lib/content'
+  import type { PageData } from './$types'
+
+  export let data: PageData
+  const { posts } = data
 </script>
 
 <h1 class="title">Blog</h1>

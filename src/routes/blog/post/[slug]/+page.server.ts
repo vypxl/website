@@ -1,5 +1,5 @@
-import type { PageLoad } from './$types'
-import { getPostBySlug } from '$lib/content'
+import type { PageServerLoad } from './$types'
+import { getPostBySlug } from '$lib/server/content'
 import { error } from '@sveltejs/kit'
 
 export const load = (async ({ params }) => {
@@ -10,4 +10,4 @@ export const load = (async ({ params }) => {
   }
 
   return { post }
-}) satisfies PageLoad
+}) satisfies PageServerLoad

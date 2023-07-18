@@ -4,7 +4,6 @@ import remarkParse from 'remark-parse'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkExtractFrontmatter from 'remark-extract-frontmatter'
 
-import remarkCodeTitle from 'remark-code-title'
 import remarkDirective from 'remark-directive'
 import remarkEmoji from 'remark-emoji'
 import remarkGfm from 'remark-gfm'
@@ -17,8 +16,8 @@ import md2rehype from 'remark-rehype'
 
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeExternalLinks from 'rehype-external-links'
-import rehypeKatex from 'rehype-katex'
-import rehypePrism from 'rehype-prism-plus'
+import rehypeMathjax from 'rehype-mathjax'
+import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeRaw from 'rehype-raw'
 import rehypeSectionize from '@hbsnow/rehype-sectionize'
 import rehypeSlug from 'rehype-slug'
@@ -77,7 +76,6 @@ const processor = unified()
   .use(remarkFrontmatter, ['yaml'])
   .use(remarkExtractFrontmatter, { yaml: yaml.parse })
 
-  .use(remarkCodeTitle)
   .use(remarkDirective)
   .use(abbrPlugin)
   .use(remarkEmoji, { accessible: true, padSpaceAfter: true })
@@ -91,11 +89,11 @@ const processor = unified()
   // Rehype plugins
   .use(md2rehype, { allowDangerousHtml: true })
   .use(rehypeRaw)
-  .use(rehypeAutolinkHeadings, { behavior: 'wrap' })
   .use(rehypeExternalLinks, { rel: ['nofollow'] })
-  .use(rehypeKatex)
-  .use(rehypePrism)
+  .use(rehypeMathjax)
+  .use(rehypePrettyCode, { theme: 'dracula' })
   .use(rehypeSlug)
+  .use(rehypeAutolinkHeadings, { behavior: 'prepend', properties: { class: 'heading-link' } }) // after slug!
   .use(rehypeSectionize) // after slug!
   .use(rehypeStringify)
 
