@@ -17,6 +17,9 @@ devDependencies:
   '@sveltejs/kit':
     specifier: ^1.22.3
     version: 1.22.3(svelte@4.0.5)(vite@4.4.4)
+  '@types/hast':
+    specifier: ^2.0.0
+    version: 2.3.5
   '@types/mdast':
     specifier: ^3.0.0
     version: 3.0.12

@@ -25,12 +25,14 @@ import rehypeSlug from 'rehype-slug'
 import rehypeStringify from 'rehype-stringify'
 
 import type { Root, Text, Code, InlineCode } from 'mdast'
+import type { Element } from 'hast'
 import type { TextDirective } from 'mdast-util-directive'
 import yaml from 'yaml'
 import { visit } from 'unist-util-visit'
 
-import type { Post, PostMeta } from './types'
+import type { Post, PostMeta } from '$lib/types'
 
+// Adds a `readingTime` property to the file's metadata
 function readingTimePlugin(): Transformer<Root, Root> {
   return (tree, file) => {
     let text = ''
@@ -41,6 +43,7 @@ function readingTimePlugin(): Transformer<Root, Root> {
   }
 }
 
+// Allows for a directive like `:abbr[short]{value="long"}` to be turned into an abbr element
 function abbrPlugin(): Transformer<Root, Root> {
   interface AbbrDirective extends TextDirective {
     data: {
@@ -70,6 +73,62 @@ function abbrPlugin(): Transformer<Root, Root> {
   }
 }
 
+// Adds a button to copy code blocks
+function insertCopyCodeButtonPlugin(): Transformer<Root, Root> {
+  const makeButton = (): Element => ({
+    type: 'element',
+    tagName: 'button',
+    properties: {
+      'data-copy-code-button': '',
+      onclick: 'navigator.clipboard.writeText(this.parentElement.querySelector("code").textContent)',
+    },
+    children: [],
+  })
+
+  return tree => {
+    visit(tree, ['element'], _node => {
+      const node = _node as unknown as Element
+      if (!node.properties || !('data-rehype-pretty-code-fragment' in node.properties)) return
+      const pre = node.children.find(child => (child as Element).tagName === 'pre') as Element
+
+      // prepend a button to the children list
+      pre.children.unshift(makeButton())
+    })
+  }
+}
+
+// Expands code block language short names
+function expandCodeBlockLanguagePlugin(): Transformer<Root, Root> {
+  const transform = (lang: string): string => {
+    const mappings: Record<string, string> = {
+      ts: 'typescript',
+      js: 'javascript',
+      py: 'python',
+      sh: 'bash',
+      md: 'markdown',
+      yml: 'YAML',
+      yaml: 'YAML',
+      json: 'JSON',
+      html: 'HTML',
+      css: 'CSS',
+      scss: 'SCSS',
+      toml: 'TOML',
+      cpp: 'C++',
+      cs: 'C#',
+      asm: 'assembly',
+    }
+    return mappings[lang] || lang
+  }
+
+  return tree => {
+    visit(tree, ['element'], _node => {
+      const node = _node as unknown as Element
+      if (!node.properties || !('data-language' in node.properties)) return
+      node.properties['data-language'] = transform(node.properties['data-language'] as string)
+    })
+  }
+}
+
 const processor = unified()
   // Remark plugins
   .use(remarkParse)
@@ -88,13 +147,15 @@ const processor = unified()
 
   // Rehype plugins
   .use(md2rehype, { allowDangerousHtml: true })
-  .use(rehypeRaw)
   .use(rehypeExternalLinks, { rel: ['nofollow'] })
   .use(rehypeMathjax)
   .use(rehypePrettyCode, { theme: 'dracula' })
+  .use(insertCopyCodeButtonPlugin)
+  .use(expandCodeBlockLanguagePlugin)
   .use(rehypeSlug)
   .use(rehypeAutolinkHeadings, { behavior: 'prepend', properties: { class: 'heading-link' } }) // after slug!
   .use(rehypeSectionize) // after slug!
+  .use(rehypeRaw) // last one!
   .use(rehypeStringify)
 
 export async function renderPost(markdown: string): Promise<Post> {
