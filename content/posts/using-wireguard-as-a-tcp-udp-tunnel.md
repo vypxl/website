@@ -74,15 +74,15 @@ sudo vim /etc/wireguard/wg0.conf
 
 ```toml
 [Interface]
-Address = 10.22.0.1/24 # Or choose your own subnet
+Address = "10.22.0.1/24" # Or choose your own subnet
 ListenPort = 2333 # I set 2333 because I'll be using the default port 51820 elsewhere
-PostUp = /home/ubuntu/add_tunnel_rules.sh # We will create this and the next script later
-PostDown = /home/ubuntu/remove_tunnel_rules.sh
-PrivateKey = *** # The one we generated earlier
+PostUp = "/home/ubuntu/add_tunnel_rules.sh" # We will create this and the next script later
+PostDown = "/home/ubuntu/remove_tunnel_rules.sh"
+PrivateKey = "***" # The one we generated earlier
 
 [Peer]
-AllowedIPs = 10.22.0.2/32 # Make sure this the exact IP of H and note the /32
-PublicKey = *** # The public key of the home server (we will generate this later)
+AllowedIPs = "10.22.0.2/32" # Make sure this the exact IP of H and note the /32
+PublicKey = "***" # The public key of the home server (we will generate this later)
 ```
 
 #### 4. Start the service
@@ -215,14 +215,14 @@ sudo vim /etc/wireguard/wg0.conf
 
 ```toml
 [Interface]
-Address = 10.22.0.2/32 # Note the /32, we want H to have this exact ip
+Address = "10.22.0.2/32" # Note the /32, we want H to have this exact ip
 ListenPort = 2333 # I set 2333 because I'll be using the default port 51820 elsewhere
-PrivateKey = # The one we generated earlier
+PrivateKey = "***" # The one we generated earlier
 
 [Peer]
-PublicKey = *** # The public key of the cloud server
-AllowedIPs = 10.22.0.0/24 # This is important. We only want to route traffic originating from our tunnel to go back through our tunnel.
-Endpoint = x.x.x.x:2333 # The public IP of the cloud server.
+PublicKey = "***" # The public key of the cloud server
+AllowedIPs = "10.22.0.0/24" # This is important. We only want to route traffic originating from our tunnel to go back through our tunnel.
+Endpoint = "x.x.x.x:2333" # The public IP of the cloud server.
 ```
 
 #### 4. Start the service
