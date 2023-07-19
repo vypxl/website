@@ -37,6 +37,15 @@
   }
 }
 
+// inline code
+code {
+  background: #282a36;
+  border-radius: 4px;
+  padding: 0.2em 0.4em;
+  font-size: 0.9em;
+  font-family: 'Fira Code', monospace;
+}
+
 // Code blocks using rehype pretty code
 
 [data-rehype-pretty-code-fragment] {
