@@ -1,6 +1,4 @@
 ---
-title: Using Wireguard as a TCP/UDP tunnel
-slug: using-wireguard-as-a-tcp-udp-tunnel
 tags: ['networking']
 published: 2023-07-16
 description: My journey and how I set up Wireguard to expose the services running on my home server to the internet using Wireguard to tunnel through NAT boundaries, with the help of an Oracle Cloud free instance.

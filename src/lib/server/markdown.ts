@@ -24,13 +24,25 @@ import rehypeSlug from 'rehype-slug'
 
 import rehypeStringify from 'rehype-stringify'
 
-import type { Root, Text, Code, InlineCode } from 'mdast'
+import type { Root, Text, Code, InlineCode, Heading } from 'mdast'
 import type { Element } from 'hast'
 import type { TextDirective } from 'mdast-util-directive'
 import yaml from 'yaml'
 import { visit } from 'unist-util-visit'
+import slugify from 'slugify'
 
 import type { Post, PostMeta } from '$lib/types'
+
+// Extracts the first level 1 heading from the tree and adds it as a `title` property to the file's metadata
+function extractTitlePlugin(): Transformer<Root, Root> {
+  return (tree, file) => {
+    const heading = tree.children.find(node => node.type === 'heading' && node.depth === 1) as Heading | undefined
+    if (!heading || heading.children.length !== 1 || heading.children[0].type !== 'text') return
+    const title = (heading.children[0] as Text).value
+    file.data.title = title
+    file.data.slug = slugify(title, { lower: true })
+  }
+}
 
 // Adds a `readingTime` property to the file's metadata
 function readingTimePlugin(): Transformer<Root, Root> {
@@ -134,6 +146,7 @@ const processor = unified()
   .use(remarkParse)
   .use(remarkFrontmatter, ['yaml'])
   .use(remarkExtractFrontmatter, { yaml: yaml.parse })
+  .use(extractTitlePlugin)
 
   .use(remarkDirective)
   .use(abbrPlugin)
@@ -158,9 +171,14 @@ const processor = unified()
   .use(rehypeRaw) // last one!
   .use(rehypeStringify)
 
+function validatePostMeta(meta: PostMeta): boolean {
+  const requiredKeys: (keyof PostMeta)[] = ['slug', 'title', 'description', 'tags', 'published', 'readingTime']
+  return requiredKeys.every(key => key in meta)
+}
+
 export async function renderPost(markdown: string): Promise<Post> {
   const rendered = await processor.process(markdown)
-  // TODO validate meta
   const meta = rendered.data as unknown as PostMeta
+  if (!validatePostMeta(meta)) throw new Error('Post meta incomplete! ' + JSON.stringify(meta))
   return { content: rendered.toString(), meta }
 }

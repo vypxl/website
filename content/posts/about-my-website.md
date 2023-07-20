@@ -1,6 +1,4 @@
 ---
-title: About my Website
-slug: about-my-website
 tags: ['webdev']
 published: 2022-02-20
 description: This article covers the technologies used to build this website and blog, and my journey building it.

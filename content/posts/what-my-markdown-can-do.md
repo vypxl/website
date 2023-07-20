@@ -1,6 +1,4 @@
 ---
-title: What my Markdown can do
-slug: what-my-markdown-can-do
 tags: ['webdev']
 published: 2023-07-20
 description: In this article I showcase the various features my rendering pipeline for markdown can do.
