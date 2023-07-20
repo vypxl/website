@@ -1,6 +1,6 @@
 ---
 tags: ['webdev']
-published: 2022-02-20
+published: 2023-07-20
 description: This article covers the technologies used to build this website and blog, and my journey building it.
 ---
 
@@ -8,15 +8,18 @@ description: This article covers the technologies used to build this website and
 
 Hey! Welcome and thank you for visiting my personal website. In this first blogpost of mine, I want to talk about all the things that went into developing it.
 
-What you see is actually my fourth(!!) attempt on creating a website and blog for myself, the first three attempts remain unfinished though. Also, I won't talk about the _great_ programming practices I used back then. But now I can proudly say that I have a personal website, one thing I always wanted to have since I started programming. Now then, how did I accomplish what you can see here?
+> **Note**
+> This is an old article I wrote back in 2022, but I updated it to reflect the current state of the website.
+
+What you see is actually my fifth(!!) attempt on creating a website and blog for myself, the first three attempts remained unfinished, this version is a remake of the fourth one. Also, I won't talk about the _amazing_ programming practices I used when building the first three versions. But now I can proudly say that I have a personal website, one thing I always wanted to have since I started programming. Now then, how did I accomplish what you can see here?
 
 ## Tech Stack
 
 This website is built on top of a so-called JAMstack.
 JAM stands for **J**avascript, **A**PIs and **M**arkup. JAMstack websites are static, generated pages that are hosted on a static website hosting service.
-I'm using the static site generator [**Gridsome**](https://gridsome.org). It uses the Javascript framework [**VueJS**](https://vuejs.org) under the hood, which makes it easy for me to extend the site with additional content.
-For the API part, I'm using local markdown files that are loaded by my [custom load script](https://github.com/vypxl/website/blob/main/util/sourceContent.mjs).
-The markup part has two sides. First, there is the obvious HTML Markup. I write most of the Markup in [**Pug**](https://pugjs.org) (an HTML preprocessor) though, as it is more enjoyable to me than writing raw HTML. The second part is what I write my blogposts in. This would be **Markdown**. I use markdown because it is easy to write in and easy to convert into beautiful HTML. In addition to that, my custom Markdown renderer I made with the library [Unified](https://unifiedjs.com) makes fancy adjustments like
+I'm using the Framework [**SvelteKit**](https://kit.svelte.dev) for building apps with the UI library [**Svelte**](https://svelte.dev), the (according to StackOverflow developer surveys) most loved Javascript Framework.
+For the API part, I'm using local markdown files that are loaded by my own logic and turned into routes.
+The markup part has two sides. First, there is the obvious HTML Markup. The second part is what I write my blogposts in. This would be **Markdown**. I use markdown because it is easy to write in and easy to convert into beautiful HTML. In addition to that, the custom Markdown renderer I made with the library [Unified](https://unifiedjs.com) enables fancy features like
 
 ```js
 rendering('Code').snippets
@@ -25,15 +28,15 @@ rendering('Code').snippets
 or automatically linking headings.
 For writing styles, I use **Sass** or, more specifically, SCSS. It allows for some niceties when writing styles I don't want to miss by relying on standard CSS.
 
+Everything is then rendered to static files.
+
 ## Development and Deployment
 
-I used Visual Studio Code for developing my website. In my opinion, it is the best code editor currently available. Gridsome, my static site generator, relies on [NodeJS](https://nodejs.org) and [Yarn](https://yarnpkg.org), so I used both these tools. For hosting, I use [**Firebase**](https://firebase.google.com) Hosting. I chose it over other hosting providers because it gave me the most freedom in configuring my website and the most value for a free plan.
-
-Instead of manually rebuilding and deploying the website every time I change something, a Github action takes care of the redeployment. When I push a commit to my main branch, Github actions rebuilds the website and deploys it to firebase.
+I used Neovim for developing my website. Yes I like my customization. For hosting, I use [**Cloudflare Pages**](https://pages.cloudflare.com/). I chose it over other hosting providers because it is easy to setup, and I had my domain managed by cloudflare anyways. They also allow for easy to setup analytics without user tracking or the need for cookies! They also automatically build my site when I push a commit to GitHub, and even give me preview deployments for pullrequests.
 
 ## TL;DR
 
-NodeJS, Gridsome, VueJS, Pug, Sass, Markdown, Unified, Firebase. You can find the source code of the website over on [Github](https://github.com/vypxl/website)
+NodeJS, SvelteKit, Svelte, Sass, Markdown, Unified, Cloudflare Pages. You can find the source code of the website over on [Github](https://github.com/vypxl/website)
 
 ## Thoughts
 
