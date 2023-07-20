@@ -144,6 +144,10 @@ code {
       padding-right: 1.5rem;
     }
 
+    code[data-line-numbers] > [data-line] {
+      padding-left: 0px;
+    }
+
     span[data-highlighted-line] {
       border-radius: 2px;
       background: #c8c8ff1a;
