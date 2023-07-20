@@ -36,7 +36,7 @@
       <h1 slot="header" class="headline">vypxl.io</h1>
       <p>
         This website serves as my portfolio and central source of information about me, and hosts my blog (at least it
-        would if I actually wrote any posts lol). It is built using Gridsome, a vue.js framework for static websites.
+        contains the very few posts I wrote haha). It is built using SvelteKit.
         Learn more about it in the blog article by clicking on this box.
       </p>
     </LinkedBox>

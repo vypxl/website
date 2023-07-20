@@ -7,13 +7,9 @@ jobs:
         with:
           node-version: '18'
       - name: Dependencies
-        run: pnpm i
+        run: npm i -g pnpm && pnpm i
       - name: Build
         run: pnpm build
-      - env:
-          firebaseToken: ${{ secrets.FIREBASETOKEN }}
-        name: firebase deploy
-        run: yarn firebase deploy --token "$firebaseToken" --only hosting
 name: build
 on:
   push:

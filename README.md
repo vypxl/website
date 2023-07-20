@@ -4,7 +4,6 @@ Online at [vypxl.io](https://vypxl.io/)
 
 Built with
 
-- Vue
-- Gridsome
+- SvelteKit
 - Markdown
-- Firebase
+- Cloudflare Pages
