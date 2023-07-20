@@ -5,29 +5,7 @@
   import 'typeface-montserrat'
   import 'typeface-roboto'
   import 'typeface-fira-mono'
-
-  import '@beyonk/gdpr-cookie-consent-banner/style.css' // optional, you can also define your own styles
-  import { Banner as GdprBanner } from '@beyonk/gdpr-cookie-consent-banner'
-  import { initAnalytics } from '$lib/analytics'
 </script>
-
-<GdprBanner
-  cookieName="vypxl-gdpr"
-  heading="Cookies"
-  description="This site uses analytics cookies so I can understand which people view my site. By clicking “Accept”, you consent to the use of such cookies as stated in the privacy and cookie policy."
-  choices={{
-    necessary: false,
-    marketing: false,
-    tracking: false,
-    analytics: {
-      label: 'Analytics',
-      description: 'Analytics cookies help me understand how people use my site.',
-      value: true,
-    },
-  }}
-  showEditIcon={false}
-  on:analytics={initAnalytics}
-/>
 
 <div class="layout">
   <header class="header">

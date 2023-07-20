@@ -5,9 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 devDependencies:
-  '@beyonk/gdpr-cookie-consent-banner':
-    specifier: ^10.0.0
-    version: 10.0.0(svelte@4.0.5)
   '@hbsnow/rehype-sectionize':
     specifier: ^1.0.7
     version: 1.0.7
@@ -196,15 +193,6 @@ packages:
       '@babel/helper-string-parser': 7.22.5
       '@babel/helper-validator-identifier': 7.22.5
       to-fast-properties: 2.0.0
-    dev: true
-
-  /@beyonk/gdpr-cookie-consent-banner@10.0.0(svelte@4.0.5):
-    resolution: {integrity: sha512-Av/BRMxOHfWi84MFAdWUefV36RtyZ5sDWA8ouyI9Iqb7M2v6XhwTzkRjGhb8ZUGECCfrbmUATzWNpMG1kDX3lw==}
-    peerDependencies:
-      svelte: ^3.54.0
-    dependencies:
-      js-cookie: 3.0.5
-      svelte: 4.0.5
     dev: true
 
   /@colors/colors@1.5.0:
@@ -3811,11 +3799,6 @@ packages:
       as-array: 2.0.0
       url-join: 0.0.1
       valid-url: 1.0.9
-    dev: true
-
-  /js-cookie@3.0.5:
-    resolution: {integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==}
-    engines: {node: '>=14'}
     dev: true
 
   /js-yaml@3.14.1:

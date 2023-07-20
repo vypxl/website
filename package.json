@@ -13,7 +13,6 @@
     "format": "prettier --plugin-search-dir . --write ."
   },
   "devDependencies": {
-    "@beyonk/gdpr-cookie-consent-banner": "^10.0.0",
     "@hbsnow/rehype-sectionize": "^1.0.7",
     "@sveltejs/adapter-static": "^2.0.2",
     "@sveltejs/kit": "^1.22.3",
