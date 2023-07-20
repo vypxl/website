@@ -66,11 +66,7 @@ sh -c "umask 077;wg genkey | tee privatekey | wg pubkey > publickey"
 
 #### 3. Set up the wireguard interface
 
-```bash
-sudo vim /etc/wireguard/wg0.conf
-```
-
-```toml
+```toml showLineNumbers title="/etc/wireguard/wg0.conf"
 [Interface]
 Address = "10.22.0.1/24" # Or choose your own subnet
 ListenPort = 2333 # I set 2333 because I'll be using the default port 51820 elsewhere
@@ -112,9 +108,7 @@ and Oracle Cloud has some intricacies.
 
 To get it working on oracle cloud, I arrived at these scripts after reading the top comment on [this reddit post](https://www.reddit.com/r/WireGuard/comments/oxmcvx/comment/h7nl24o/?context=3) (hail spez).
 
-```bash
-$ vim add_tunnel_rules.sh
-
+```bash showLineNumbers title="~/add_tunnel_rules.sh"
 #!/bin/bash
 
 if [[ $EUID -ne 0 ]]; then
@@ -147,9 +141,7 @@ do
 done
 ```
 
-```bash
-$ vim remove_tunnel_rules.sh
-
+```bash showLineNumbers title="~/remove_tunnel_rules.sh"
 #!/bin/bash
 
 if [[ $EUID -ne 0 ]]; then
@@ -207,11 +199,7 @@ sh -c "umask 077;wg genkey | tee privatekey | wg pubkey > publickey"
 
 #### 3. Set up the wireguard interface
 
-```bash
-sudo vim /etc/wireguard/wg0.conf
-```
-
-```toml
+```toml showLineNumbers title="/etc/wireguard/wg0.conf"
 [Interface]
 Address = "10.22.0.2/32" # Note the /32, we want H to have this exact ip
 ListenPort = 2333 # I set 2333 because I'll be using the default port 51820 elsewhere
