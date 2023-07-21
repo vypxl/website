@@ -43,6 +43,8 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .header {
@@ -51,8 +53,6 @@
     align-items: center;
     margin-bottom: 20px;
     height: 80px;
-    padding-left: 20px;
-    padding-right: 20px;
   }
 
   .nav-l {
@@ -72,8 +72,6 @@
     margin-top: auto;
     width: 100%;
     text-align: center;
-    padding-left: 20px;
-    padding-right: 20px;
 
     &::before {
       content: '';
@@ -104,13 +102,6 @@
   .footer-social {
     & > * {
       display: block;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .layout {
-      padding-left: 0px;
-      padding-right: 0px;
     }
   }
 </style>

@@ -18,11 +18,9 @@
     <TagBox tags={meta.tags} />
   </div>
 </div>
-<div class="box">
-  <article class="content blogpost">
-    {@html content}
-  </article>
-</div>
+<article class="content blogpost">
+  {@html content}
+</article>
 
 <style lang="scss">
   .header {
@@ -40,9 +38,5 @@
     justify-content: center;
     margin-bottom: 1em;
     margin-top: 1em;
-  }
-
-  .box {
-    margin-bottom: 2.5em;
   }
 </style>

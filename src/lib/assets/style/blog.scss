@@ -47,22 +47,22 @@
 
     &::before {
       content: ' ';
-      width: 2em;
-      height: 2em;
-      padding: 1em;
+      width: 32px;
+      height: 32px;
+      padding: 16px;
       background-size: auto;
       background-repeat: no-repeat;
 
       position: absolute;
-      top: 0.5em;
-      left: 2em;
+      top: 16px;
+      left: 24px;
     }
 
     .admonition-title {
       display: block;
     }
 
-    padding-left: 6em;
+    padding-left: 96px;
   }
 
   .admonition-warning {
