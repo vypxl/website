@@ -1,8 +1,5 @@
-html {
+:root {
   --base-font-size: 20px;
-}
-
-body {
   --bg-color: #131c2f;
   --bg-content-color: #13253f;
   --body-color: #ced8de;
@@ -18,11 +15,10 @@ body {
 }
 
 @media screen and (max-width: 650px) {
-  html {
+  :root {
     --base-font-size: 16px;
-  }
-  body {
     --space: 1.5rem;
     --header-height: 60px;
+    --content-width: 100%;
   }
 }

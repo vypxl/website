@@ -25,10 +25,6 @@
 </div>
 
 <style lang="scss">
-  .content {
-    text-align: justify;
-  }
-
   .header {
     width: 80%;
     margin: auto;
