@@ -23,7 +23,6 @@
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-svelte": "^2.32.2",
-    "firebase-tools": "^12.4.4",
     "mdast-util-directive": "^3.0.0",
     "prettier": "^2.0.0",
     "prettier-plugin-svelte": "^2.10.1",
