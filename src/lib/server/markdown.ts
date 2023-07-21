@@ -41,6 +41,9 @@ function extractTitlePlugin(): Transformer<Root, Root> {
     const title = (heading.children[0] as Text).value
     file.data.title = title
     file.data.slug = slugify(title, { lower: true })
+
+    // remove the heading from the tree
+    tree.children = tree.children.filter(node => node !== heading)
   }
 }
 
