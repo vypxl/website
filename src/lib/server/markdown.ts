@@ -153,7 +153,12 @@ const processor = unified()
   .use(remarkEmoji, { accessible: true, padSpaceAfter: true })
   .use(remarkGfm)
   .use(remarkGithub, { repository: 'vypxl/website' })
-  .use(remarkGithubBetaBlockquoteAdmonitions)
+  .use(remarkGithubBetaBlockquoteAdmonitions, {
+    classNameMaps: {
+      block: title => `admonition admonition-${title.toLowerCase()}`,
+      title: title => `admonition-title admonition-title-${title.toLowerCase()}`,
+    },
+  })
   .use(remarkMath)
   .use(readingTimePlugin)
   .use(remarkToc, { maxDepth: 2 })
