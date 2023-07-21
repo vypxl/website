@@ -1,51 +1,57 @@
 * {
-	box-sizing: border-box;
-	-webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-html, body {
-    font-family: Roboto, 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-    font-size: var(--base-font-size);
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
+html,
+body {
+  font-family: Roboto, 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-size: var(--base-font-size);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
 }
 
 body {
-    background: var(--bg-color);
-    color: var(--body-color);
-    transition: .4s, background-color .4s;
+  background: var(--bg-color);
+  color: var(--body-color);
+  transition: 0.4s, background-color 0.4s;
 }
 
 a {
-    color: inherit;
-    transition: opacity .2s;
+  color: inherit;
+  transition: opacity 0.2s;
 
-    &:hover {
-        opacity: .8;
-    }
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 a:not(.button) {
-    color: var(--link-color);
+  color: var(--link-color);
 }
 
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 code {
-    font-family: 'Fira Code', monospace;
+  font-family: 'Fira Code', monospace;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-    color: var(--title-color);
-    line-height: 2;
-    transition: color .6s;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  color: var(--title-color);
+  line-height: 2;
+  transition: color 0.6s;
 }
 
 h1 {
@@ -53,20 +59,36 @@ h1 {
   font-size: 1.802em;
 }
 
-h2 {font-size: 1.602em;}
+h2 {
+  font-size: 1.602em;
+}
 
-h3 {font-size: 1.424em;}
+h3 {
+  font-size: 1.424em;
+}
 
-h4 {font-size: 1.266em;}
+h4 {
+  font-size: 1.266em;
+}
 
-h5 {font-size: 1.125em;}
+h5 {
+  font-size: 1.125em;
+}
 
 p {
-    margin-bottom: 1.25em;
+  margin-bottom: 1.25em;
 }
 
 blockquote {
-    border-left: 4px solid var(--border-color);
-    padding-left: calc(var(--space) / 2);
-    color: var(--title-color)
+  border-left: 4px solid var(--border-color);
+  padding-left: calc(var(--space) / 2);
+  color: var(--title-color);
+}
+
+code {
+  background: #282a36;
+  border-radius: 4px;
+  padding: 0.2em 0.4em;
+  font-size: 0.9em;
+  font-family: 'Fira Code', monospace;
 }
