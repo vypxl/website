@@ -209,6 +209,7 @@ PrivateKey = "***" # The one we generated earlier
 PublicKey = "***" # The public key of the cloud server
 AllowedIPs = "10.22.0.0/24" # This is important. We only want to route traffic originating from our tunnel to go back through our tunnel.
 Endpoint = "x.x.x.x:2333" # The public IP of the cloud server.
+PersistentKeepalive = 25 # Needed to keep the connection alive, otherwise your home server might become inaccessible if not used for some time.
 ```
 
 #### 4. Start the service
