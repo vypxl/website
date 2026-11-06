@@ -1,13 +1,17 @@
 import { useHead } from '@solidjs/web'
-import styles from './Legal.module.css'
 
 export const title = 'Legal - vypxl'
 
-export default function Legal() {
+export default function Legal() @{
   useHead([{ tag: 'title', props: { children: title } }])
 
-  return (
-    <div class={styles.page}>
+  <>
+    <style>
+      .page p {
+        text-align: justify;
+      }
+    </style>
+    <div class="page">
       <p>On this page, you can find the Disclaimer, Privacy Policy &amp; Cookie Policy</p>
 
       <h1>Disclaimer</h1>
@@ -399,5 +403,5 @@ export default function Legal() {
       </p>
       <p>This document was last updated on May 1, 2020</p>
     </div>
-  )
+  </>
 }

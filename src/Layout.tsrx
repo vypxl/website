@@ -1,0 +1,112 @@
+import { useIsRouting } from '@solidjs/router'
+import type { JSX } from '@solidjs/web'
+import logo from './lib/favicon.png'
+
+export default function Layout(props: { children: JSX.Element }) @{
+  const isRouting = useIsRouting()
+  <>
+    <div class="layout">
+      <header class="header">
+        <div class="nav-l">
+          <img src={logo} alt="Logo" width="32" height="32" />
+          <a href="/">vypxl</a>
+        </div>
+        <nav>
+          <a class="nav-link" href="/blog">
+            Blog
+          </a>
+          <a class="nav-link" href="/portfolio">
+            Portfolio
+          </a>
+        </nav>
+      </header>
+      <main aria-busy={isRouting() ? 'true' : 'false'}>{props.children}</main>
+      <footer class="footer">
+        <div class="footer-content">
+          <div>
+            <a href="/legal">disclaimer / privacy / cookies (legal)</a>
+            <div>contact: thomas &lt;at&gt; vypxl.io</div>
+          </div>
+          <div class="footer-social">
+            <a target="_blank" rel="noopener" href="https://github.com/vypxl">
+              GitHub
+            </a>
+            <a target="_blank" rel="noopener" href="https://linkedin.com/in/thomas-meyer-lehnert">
+              LinkedIn
+            </a>
+          </div>
+        </div>
+        <div>&copy; 2020-2026 vypxl</div>
+      </footer>
+    </div>
+    <style>
+      .layout {
+        min-height: 100vh;
+        max-width: var(--content-width);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        height: 80px;
+      }
+
+      .nav-l {
+        display: flex;
+        align-items: center;
+
+        & > * {
+          margin-right: 1em;
+        }
+      }
+
+      .nav-link {
+        margin-left: 20px;
+      }
+
+      .footer {
+        margin-top: auto;
+        width: 100%;
+        text-align: center;
+
+        &::before {
+          content: '';
+          width: 60%;
+          height: calc(var(--space) / 2);
+          border-top: 2px solid #444;
+        }
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        & > * {
+          margin: 1em 0px;
+        }
+      }
+
+      .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        & > * {
+          margin: 0px 2em;
+        }
+      }
+
+      .footer-social {
+        & > * {
+          display: block;
+        }
+      }
+    </style>
+  </>
+}

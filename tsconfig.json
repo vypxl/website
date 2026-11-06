@@ -11,5 +11,14 @@
     "allowImportingTsExtensions": true,
     "types": ["vite/client", "bun", "filesystem-routing/types"]
   },
-  "include": ["src", "vite.config.ts"]
+  "include": ["src", "vite.config.ts"],
+  "tsrx": {
+    "compiler": "@tsrx/solid"
+  },
+  "contentMappers": [
+    {
+      "package": "@tsrx/content-mapper",
+      "extensions": [".tsrx"]
+    }
+  ]
 }

@@ -1,13 +1,13 @@
-import { createMemo, Show } from 'solid-js'
+import { createMemo } from 'solid-js'
 import { useParams } from '@solidjs/router'
 import { useHead } from '@solidjs/web'
 import { getAllPosts } from '../../../lib/server/content'
-import { PostPage } from '../../../lib/components/blog/Blog'
-import NotFound from '../../[...404]'
+import { PostPage } from '../../../lib/components/blog/Blog.tsrx'
+import NotFound from '../../[...404].tsrx'
 
 export const route = { preload: () => getAllPosts() }
 
-export default function BlogPost() {
+export default function BlogPost() @{
   const params = useParams()
   const posts = createMemo(() => getAllPosts())
   const post = () => posts().find(post => post.meta.slug === params.slug)
@@ -15,9 +15,9 @@ export default function BlogPost() {
     tag: 'title',
     props: { children: post() ? `${post()!.meta.title} - vypxl blog` : 'Not Found (404)' },
   }))
-  return (
-    <Show when={post()} fallback={<NotFound />} keyed>
-      {post => <PostPage post={post} />}
-    </Show>
-  )
+  @if (post()) {
+    <PostPage post={post()!} />
+  } @else {
+    <NotFound />
+  }
 }

@@ -1,9 +1,8 @@
 import { pageRoutes } from 'virtual:file-routes'
 import { fileRoutes } from '@solidjs/router/fs'
-import { Loading } from 'solid-js'
 import { createRouter, intentPreload, pendingLinks } from '@solidjs/router'
 import { announceRoutes } from '@solidjs/prerender'
-import Layout from './Layout'
+import Layout from './Layout.tsrx'
 import './lib/assets/style/master.css'
 import 'typeface-montserrat/index.css'
 import 'typeface-roboto/index.css'
@@ -15,15 +14,17 @@ const Router = createRouter({
   routes: fileRoutes(pageRoutes),
 })
 
-export default function App() {
+export default function App() @{
   announceRoutes(Router)
-  return (
-    <Router>
-      {props => (
+  <Router>
+    {props => @{
         <Layout>
-          <Loading>{props.children}</Loading>
+          @try {
+            <>{props.children}</>
+          } @pending {
+            <></>
+          }
         </Layout>
-      )}
-    </Router>
-  )
+      }}
+  </Router>
 }
