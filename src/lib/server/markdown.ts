@@ -31,7 +31,7 @@ import yaml from 'yaml'
 import { visit } from 'unist-util-visit'
 import slugify from 'slugify'
 
-import type { Post, PostMeta } from '$lib/types'
+import type { Post, PostMeta } from '../types'
 
 // Extracts the first level 1 heading from the tree and adds it as a `title` property to the file's metadata
 function extractTitlePlugin(): Transformer<Root, Root> {
@@ -95,7 +95,8 @@ function insertCopyCodeButtonPlugin(): Transformer<Root, Root> {
     tagName: 'button',
     properties: {
       'data-copy-code-button': '',
-      onclick: 'navigator.clipboard.writeText(this.parentElement.querySelector("code").textContent)',
+      type: 'button',
+      ariaLabel: 'Copy code',
     },
     children: [],
   })
@@ -103,7 +104,7 @@ function insertCopyCodeButtonPlugin(): Transformer<Root, Root> {
   return tree => {
     visit(tree, ['element'], _node => {
       const node = _node as unknown as Element
-      if (!node.properties || !('data-rehype-pretty-code-fragment' in node.properties)) return
+      if (!node.properties || !('data-rehype-pretty-code-figure' in node.properties)) return
       const pre = node.children.find(child => (child as Element).tagName === 'pre') as Element
 
       // prepend a button to the children list

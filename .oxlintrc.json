@@ -3,5 +3,5 @@
   "categories": {
     "correctness": "error"
   },
-  "ignorePatterns": ["build/**", ".svelte-kit/**", "package/**", ".firebase/**", ".direnv/**", "static/apps/**"]
+  "ignorePatterns": ["build/**", "package/**", ".direnv/**", "static/apps/**", "content/**", "dist/**"]
 }

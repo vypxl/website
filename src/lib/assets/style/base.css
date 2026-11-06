@@ -17,7 +17,9 @@ body {
 body {
   background: var(--bg-color);
   color: var(--body-color);
-  transition: 0.4s, background-color 0.4s;
+  transition:
+    0.4s,
+    background-color 0.4s;
 }
 
 a {
@@ -91,4 +93,9 @@ code {
   padding: 0.2em 0.4em;
   font-size: 0.9em;
   font-family: 'Fira Code', monospace;
+}
+
+a[data-pending] {
+  opacity: 0.6;
+  cursor: progress;
 }

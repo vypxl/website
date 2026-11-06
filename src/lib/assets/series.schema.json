@@ -26,6 +26,5 @@
       "uniqueItems": true
     }
   },
-  "required": [ "name", "slug", "description", "parts" ]
+  "required": ["name", "slug", "description", "parts"]
 }
-

@@ -1,0 +1,54 @@
+.title {
+  text-align: center;
+}
+.header {
+  width: 80%;
+  margin: auto;
+}
+.header .title {
+  margin-bottom: 1rem;
+}
+.heading {
+  margin-top: 2.5em;
+  text-align: center;
+}
+.listing {
+  margin: 3em 0;
+}
+.listing li {
+  margin-bottom: 1em;
+}
+.description {
+  margin-top: 0.5em;
+}
+.meta {
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  justify-content: space-between;
+  font-weight: 200;
+  > * {
+    margin-right: 1em;
+  }
+}
+.tagbox {
+  display: flex;
+  justify-content: center;
+  margin: 1em 0;
+}
+.tag {
+  position: relative;
+  user-select: none;
+  display: inline-block;
+  background: #1c805b;
+  border-radius: 4px;
+  padding: 2px 5px;
+  font-size: 0.8em;
+  text-decoration: none;
+  background-blend-mode: darken;
+  &:link,
+  &:visited {
+    color: white;
+  }
+}

@@ -40,8 +40,6 @@
     }
   }
 
-  // admonitions
-
   .admonition {
     position: relative;
 
@@ -79,9 +77,8 @@
     border-color: #8be9fd;
   }
 }
-// Code blocks using rehype pretty code
 
-[data-rehype-pretty-code-fragment] {
+[data-rehype-pretty-code-figure] {
   font-size: 0.8em;
   background: #282a36;
   border-radius: 8px;
@@ -128,13 +125,12 @@
       background-position: center;
       background-size: auto;
       box-shadow: none;
-      // box-shadow: 0 0 2px 1px #bbb;
+
       border: none;
-      // width: 1em;
-      // height: 1em;
+
       margin: auto;
       cursor: pointer;
-      // border: 1px solid #bbb;
+
       border-radius: 4px;
       padding: 1.25em 2em;
     }

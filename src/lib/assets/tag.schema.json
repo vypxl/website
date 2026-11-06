@@ -21,6 +21,5 @@
       "description": "The color to use for this tag (as in css)"
     }
   },
-  "required": [ "name", "slug", "description", "color" ]
+  "required": ["name", "slug", "description", "color"]
 }
-

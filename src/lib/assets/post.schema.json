@@ -29,5 +29,5 @@
       "uniqueItems": "true"
     }
   },
-  "required": [ "title", "slug", "description", "published" ]
+  "required": ["title", "slug", "description", "published"]
 }
