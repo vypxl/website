@@ -1,6 +1,5 @@
 import { useIsRouting } from '@solidjs/router'
 import type { JSX } from '@solidjs/web'
-import logo from './lib/favicon.png'
 
 export default function Layout(props: { children: JSX.Element }) @{
   const isRouting = useIsRouting()
@@ -8,7 +7,7 @@ export default function Layout(props: { children: JSX.Element }) @{
     <div class="layout">
       <header class="header">
         <div class="nav-l">
-          <img src={logo} alt="Logo" width="32" height="32" />
+          <img src="/favicon.png" alt="Logo" width="32" height="32" />
           <a href="/">vypxl</a>
         </div>
         <nav>
