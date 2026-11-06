@@ -1,0 +1,7 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "categories": {
+    "correctness": "error"
+  },
+  "ignorePatterns": ["build/**", ".svelte-kit/**", "package/**", ".firebase/**", ".direnv/**", "static/apps/**"]
+}
